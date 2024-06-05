@@ -129,21 +129,19 @@ export class MainScene {
     }
 
     playAnimation() {
-        const anims = [
-            'aim',
-            'death',
-            'hoverboard',
-            'idle',
-            'idle-turn',
-            'jump',
-            'portal',
-            'run',
-            'run-to-idle',
-            'shoot',
-            'walk'
-        ];
-
-        // console.log(this.animation);
+        // const anims = [
+        //     'aim',
+        //     'death',
+        //     'hoverboard',
+        //     'idle',
+        //     'idle-turn',
+        //     'jump',
+        //     'portal',
+        //     'run',
+        //     'run-to-idle',
+        //     'shoot',
+        //     'walk'
+        // ];        
 
         this.trackEntry = this.animation.state.setAnimation(0, 'hoverboard', false);
         console.log(this.trackEntry);
@@ -154,7 +152,9 @@ export class MainScene {
     }
 
     resumeAnimation() {
-        this.animation.lastTime = Date.now();
+        console.log(this.animation);
+        
+        // this.animation.lastTime = Date.now();
         this.animation.autoUpdate = true
     }
 

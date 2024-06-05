@@ -3,14 +3,14 @@ import { MainScene } from "./MainScene";
 
 export class App {
     // static assets: any; 
-    canvas!: PIXI.ICanvas | HTMLElement;
+    canvas: HTMLElement | null = null;
     app!: PIXI.Application
     scenes: any[] = [];
 
     async run() {
-        this.canvas = document.getElementById("canvas") as HTMLElement;
+        this.canvas = document.getElementById("canvas");
         this.app = new PIXI.Application({
-            view: this.canvas,
+            view: this.canvas as HTMLCanvasElement,
             width: 1440,
             height: 810,
 
@@ -20,7 +20,7 @@ export class App {
             // resizeTo: window,
             // transparent: true,
         });
-        globalThis.__PIXI_APP__ = this.app;
+        (globalThis as any).__PIXI_APP__ = this.app;
         window.onresize = this.onResize;
         this.onResize();
 
@@ -30,20 +30,20 @@ export class App {
                     {
                         name: "images",
                         assets: {
-                            "bg": "assets/sprites/background.png",
-                            "restart_button": "assets/sprites/restart_button.png"                            
+                            "bg": "resources/sprites/background.png",
+                            "restart_button": "resources/sprites/restart_button.png"                            
                         }
                     },
                     {
                         name: "fonts",
                         assets: {
-                            "DoHyeon": "assets/fonts/DoHyeon-Regular.ttf"
+                            "DoHyeon": "resources/fonts/DoHyeon-Regular.ttf"
                         }
                     },
                     {
                         name: "spines",
                         assets: {
-                            "spineboy": "./assets/spine/boy/spineboy-pro.json"
+                            "spineboy": "resources/spine/boy/spineboy-pro.json"
                         }
                     },
                 ]
@@ -60,7 +60,6 @@ export class App {
     }
 
     onResize() {
-        console.log(this.canvas);
         const style = this.canvas!.style;
         
         let width;
